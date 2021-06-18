@@ -12,7 +12,7 @@ class Bot < ApplicationRecord
 
   def frequency_change
     if saved_change_to_frequency?
-      job = Sidekiq::Cron::Job.find cron_job_name
+      job = Sidekiq::Cron::Job.find(token.split(":")[0])
 
       enabled = job ? job.enabled? : false 
       
@@ -22,15 +22,15 @@ class Bot < ApplicationRecord
       end
 
       Sidekiq::Cron::Job.create(
-        name: cron_job_name,
+        name: token.split(":")[0],
         cron: "*/#{self.frequency} * * * *", 
         class: 'MessageWorker',
         args: id
       )
 
-      job = Sidekiq::Cron::Job.find cron_job_name
+      job = Sidekiq::Cron::Job.find token.split(":")[0]
 
-      if enabled
+      if enabled == true
         job.enable!
         job.enque!
       else
