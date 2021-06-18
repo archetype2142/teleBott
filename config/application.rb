@@ -20,6 +20,6 @@ module TeleBott
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
-    config.hosts << "139.162.158.191"
+    config.hosts << "bots.jalappeno.pl"
   end
 end
