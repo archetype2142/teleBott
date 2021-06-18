@@ -12,7 +12,7 @@ class BotsController < ApplicationController
 		new_bot = Bot.new(bot_params)
 
 		if new_bot.save
-			redirect_to bot_path, flash: { success: "bot created!" }
+			redirect_to bot_path(bot), flash: { success: "bot created!" }
 		else
 			redirect_to new_bot_path, flash: { error: new_bot.errors }
 		end
