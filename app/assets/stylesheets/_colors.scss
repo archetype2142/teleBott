@@ -1,71 +1,6 @@
 $jalappeno-white: #fafafa;
-$jalappeno-gray: #4a4a4a;
 
 $jalappeno: (
-  "red-10": #f3eff0,
-  "red-20": #f4cdd8,
-  "red-30": #f5b0c4,
-  "red-40": #f491aa,
-  "red-50": #f3748f,
-  "red-60": #f15775,
-  "red-70": #f04361,
-  "red-80": #ef344e,
-  "red-90": #d32f46,
-  "red-100": #ba2a41,
-  "red-110": #a32439,
-  "red-120": #8d1f31,
-  "red-130": #721a28,
-  "red-140": #55121c,
-  "red-150": #370b13,
-
-  "red-pop-10": #feebf1,
-  "red-pop-20": #fec9d8,
-  "red-pop-30": #feacc4,
-  "red-pop-40": #fc8caa,
-  "red-pop-50": #fa6e8e,
-  "red-pop-60": #f84f73,
-  "red-pop-70": #f63a5f,
-  "red-pop-80": #f4284b,
-  "red-pop-90": #d82544,
-  "red-pop-100": #bf213f,
-  "red-pop-110": #a71d37,
-  "red-pop-120": #901930,
-  "red-pop-130": #751527,
-  "red-pop-140": #570f1b,
-  "red-pop-150": #390912,
-
-  "tangerine-10": #fcfbf6,
-  "tangerine-20": #fcf4d4,
-  "tangerine-30": #fceeb7,
-  "tangerine-40": #fbe097,
-  "tangerine-50": #fad179,
-  "tangerine-60": #f7c05a,
-  "tangerine-70": #f5b045,
-  "tangerine-80": #f4a134,
-  "tangerine-90": #d79130,
-  "tangerine-100": #bf822b,
-  "tangerine-110": #a77325,
-  "tangerine-120": #8f6320,
-  "tangerine-130": #76511b,
-  "tangerine-140": #573b13,
-  "tangerine-150": #38250d,
-
-  "tangerine-pop-10": #fefbeb,
-  "tangerine-pop-20": #fef4c9,
-  "tangerine-pop-30": #feeeac,
-  "tangerine-pop-40": #fde08c,
-  "tangerine-pop-50": #fcd16e,
-  "tangerine-pop-60": #fabf4f,
-  "tangerine-pop-70": #f8af3a,
-  "tangerine-pop-80": #f7a028,
-  "tangerine-pop-90": #da9025,
-  "tangerine-pop-100": #c18121,
-  "tangerine-pop-110": #a9721d,
-  "tangerine-pop-120": #916219,
-  "tangerine-pop-130": #775015,
-  "tangerine-pop-140": #583b0f,
-  "tangerine-pop-150": #392509,
-
   "green-10": #eafcf3,
   "green-20": #d4f8e8,
   "green-30": #bff5dc,
@@ -97,49 +32,13 @@ $jalappeno: (
   "green-pop-130": #0f5508,
   "green-pop-140": #0b3f05,
   "green-pop-150": #062803,
-
-  "blue-10": #f7f7f7,
-  "blue-20": #d9eef6,
-  "blue-30": #bee6f6,
-  "blue-40": #9fd6f5,
-  "blue-50": #81c4f5,
-  "blue-60": #66b2f5,
-  "blue-70": #51a1f5,
-  "blue-80": #4190f6,
-  "blue-90": #3b82d9,
-  "blue-100": #3675c0,
-  "blue-110": #2f68a8,
-  "blue-120": #285990,
-  "blue-130": #204876,
-  "blue-140": #173658,
-  "blue-150": #0e2238,
-
-  "blue-pop-10": #ecf9fe,
-  "blue-pop-20": #ccf0fe,
-  "blue-pop-30": #b0e8fe,
-  "blue-pop-40": #90d8fe,
-  "blue-pop-50": #72c5fe,
-  "blue-pop-60": #55b3fe,
-  "blue-pop-70": #3fa1fe,
-  "blue-pop-80": #2d90fe,
-  "blue-pop-90": #2982e0,
-  "blue-pop-100": #2675c7,
-  "blue-pop-110": #2168ae,
-  "blue-pop-120": #1c5995,
-  "blue-pop-130": #17487a,
-  "blue-pop-140": #10365b,
-  "blue-pop-150": #0a223a
 );
 
 $primarybackground: $jalappeno-white;
 $primary: map-get($jalappeno, 'green-80');
-$link: map-get($jalappeno, 'blue-100');
-$info: map-get($jalappeno, 'blue-pop-80');
 $success: map-get($jalappeno, 'green-80');
-$warning: map-get($jalappeno, 'tangerine-80');
-$danger: map-get($jalappeno, 'red-80');
 
-@each $color in red, tangerine, green, blue {
+@each $color in green {
   @for $i from 1 through 15 {
     .is-#{"" + $color}-#{$i * 10} {
       color: map-get($jalappeno, $color + '-#{$i * 10}') !important;
@@ -148,38 +47,5 @@ $danger: map-get($jalappeno, 'red-80');
     .is-#{"" + $color}-pop-#{$i * 10} {
       color: map-get($jalappeno, $color + '-pop-#{$i * 10}') !important;
     }
-
-    .has-bg-#{"" + $color}-#{$i * 10} {
-      background-color: map-get($jalappeno, $color + '-#{$i * 10}') !important;
-    }
-
-    .has-bg-#{"" + $color}-pop-#{$i * 10} {
-      background-color: map-get($jalappeno, $color + '-pop-#{$i * 10}') !important;
-    }
-
-    .has-border-#{"" + $color}-#{$i * 10} {
-      border-color: map-get($jalappeno, $color + '-#{$i * 10}') !important;
-    }
-
-    .has-border-#{"" + $color}-pop-#{$i * 10} {
-      border-color: map-get($jalappeno, $color + '-pop-#{$i * 10}') !important;
-    }
   }
-}
-
-.is-black {
-  color: black;
-}
-
-.has-bg-green-100 {
-  transition: all 1s ease;
-}
-
-.has-text-on-bg-green-100 {
-  color: white;
-}
-
-.text-styles-on-bg-change {
-  color: white !important;
-  font-weight: bold;
 }

@@ -27,6 +27,8 @@ class CronJobController < ApplicationController
     job = Sidekiq::Cron::Job.find bot.cron_job_name
 
     job.disable!
+
+    redirect_to request.referer, flash: { success: "Job stopped!" }
   end
 
   private

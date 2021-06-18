@@ -18,7 +18,7 @@
 									= bot.message
 							footer.card-footer
 								- if Sidekiq::Cron::Job.find(bot.cron_job_name).enabled?
-									= link_to "Stop", start_job_path(bot.id), class: "card-footer-item is-primary"
+									= link_to "Stop", stop_job_path(bot.id), class: "card-footer-item is-primary"
 								- else
 									= link_to "Start", start_job_path(bot.id), class: "card-footer-item is-primary"
 								= link_to "Edit", bot_path(bot.id), class: "card-footer-item"
