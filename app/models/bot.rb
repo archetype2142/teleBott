@@ -3,12 +3,20 @@ class Bot < ApplicationRecord
 	has_many :histories
   has_many :bot_errors
 
-  before_create :clean_token!
   after_create :start_bot
+  after_update :frequency_change
+  before_create :clean_token!
+  before_destroy :clean_jobs
 
   validates :token, presence: true
   validates_uniqueness_of :token
-  after_update :frequency_change
+
+  def clean_jobs
+    job = Sidekiq::Cron::Job.find(token.split(":")[0])
+
+    job.disable!
+    job.destroy
+  end
 
   def frequency_change
     if saved_change_to_frequency?
