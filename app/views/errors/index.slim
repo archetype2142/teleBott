@@ -1,0 +1,14 @@
+.container
+	.columns
+		.column.is-6.is-offset-3
+			h1.is-size-1 Errors
+			- if @errors.length > 0
+				- @errors.each do |err|
+					.box
+						.columns
+							.column.is-9
+								= err.message
+								br
+								= err.bot&.name
+							.column.is-3
+								= link_to "Remove", error_path(err.id), method: :delete, class: "button is-danger"

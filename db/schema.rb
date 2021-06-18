@@ -10,27 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_17_102134) do
+ActiveRecord::Schema.define(version: 2021_06_18_042859) do
+
+  create_table "bot_errors", force: :cascade do |t|
+    t.text "message"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "bot_id"
+    t.index ["bot_id"], name: "index_bot_errors_on_bot_id"
+  end
 
   create_table "bots", force: :cascade do |t|
     t.text "token"
     t.string "name"
     t.text "message"
-    t.integer "update_id", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "errors", force: :cascade do |t|
-    t.text "error"
-    t.text "bot_name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.string "cron_job_name"
+    t.integer "frequency", default: 5
   end
 
   create_table "groups", force: :cascade do |t|
     t.string "name"
-    t.integer "group_id"
+    t.integer "telegram_group_id"
     t.integer "bot_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -43,6 +45,18 @@ ActiveRecord::Schema.define(version: 2021_06_17_102134) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["bot_id"], name: "index_histories_on_bot_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end

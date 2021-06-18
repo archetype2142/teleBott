@@ -1,3 +1,8 @@
 class ApplicationController < ActionController::Base
-	  http_basic_authenticate_with :name => "admin", :password => "secret"
+  def report_error bot_id: nil, error_message: nil
+    BotError.create!(
+      bot_id: bot_id,
+      message: error_message
+    )
+  end
 end

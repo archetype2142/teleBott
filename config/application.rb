@@ -1,11 +1,8 @@
 require_relative "boot"
 
-# require "rails/all"
-require 'active_record/railtie'
-require 'action_controller/railtie'
-require 'action_view/railtie'
-require 'active_job/railtie'
-require 'sprockets/railtie'
+require 'rails/all'
+require 'dotenv/load'
+require './lib/telegram_bot'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -23,5 +20,6 @@ module TeleBott
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.hosts << "6adf89fb601b.ngrok.io"
   end
 end

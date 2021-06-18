@@ -1,0 +1,37 @@
+.container
+	.columns
+		.column.is-6.is-offset-3
+			h1.is-green-150 = @bot.name
+			.box.mb-5
+				= form_with model: @bot, url: bot_path(@bot.id), method: :patch do |f|
+					.field
+						= f.label :token, "Bot Token", class: "label" 
+						.control
+							= f.text_area :token, class: "input"
+					.field
+						= f.label :frequency, "Message frequency (mins)", class: "label"
+						.control
+							= f.text_area :frequency, class: "input"
+
+					= f.submit "Update", class: "button is-primary"
+
+			.columns
+				.column
+					h1.is-size-3 Groups
+					p 
+						span.has-text-danger Note: 
+						span To remove the group, remove the bot from the group
+
+					- @groups.each do |group|
+						.box
+							.is-size-4 = group.name
+								
+				.column
+					h1.is-size-3 Message
+					p 
+						span.has-text-danger Note: 
+						span This is the message currently being sent
+					.box 
+						p = @bot.message
+						= link_to "Edit", edit_message_path(@bot.id), class: "button"
+					

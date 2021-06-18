@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.0'
 
+gem 'dotenv-rails'
 gem "rails"
 gem 'sqlite3', '~> 1.4'
 gem 'puma', '~> 5.0'
@@ -18,6 +19,7 @@ gem 'slim'
 gem 'telegram-bot-ruby'
 gem 'rack_password'
 gem 'bootsnap', '>= 1.4.4', require: false
+gem 'devise'
 
 group :development do
   gem 'web-console', '>= 4.1.0'

@@ -1,0 +1,20 @@
+.container
+	.columns
+		.column.is-6.is-offset-3
+			h1.title.is-size-3 Register New Bot
+			p Register a new bot with BotFather on telegram and then add the token below
+			.box.mt-5
+				= form_with model: Bot.new, url: bots_path do |f|
+					.field
+						= f.label :token, "Bot Token", class: "label" 
+						.control
+						= f.text_area :token, class: "input #{'is-danger' if f.object.errors.include?(:token)}", placeholder: "Token"
+						- if f.object.errors.include?(:token)
+							p.help.is-danger
+								= f.object.errors[:token]
+					.field
+						= f.label :message, "First Message", class: "label" 
+						.control
+						= f.text_area :message, class: "input", placeholder: "Message" 
+					.control
+						= f.submit "Add Bot", class: "button is-primary" 

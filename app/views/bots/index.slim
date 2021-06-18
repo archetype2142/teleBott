@@ -1,0 +1,25 @@
+.container
+	.columns
+		.column.is-6.is-offset-3
+			.level
+				.level-left
+					h1.title All Bots
+				.level-right
+					= link_to "Add Bot", new_bot_path, class: "button is-primary"
+
+			.columns.is-multiline.mt-5
+				- @bots.each do |bot|
+					.column.is-6
+						.card
+							header.card-header
+								p.card-header-title = bot.name
+							.card-content
+								.content 
+									= bot.message
+							footer.card-footer
+								- if Sidekiq::Cron::Job.find(bot.cron_job_name).enabled?
+									= link_to "Stop", start_job_path(bot.id), class: "card-footer-item is-primary"
+								- else
+									= link_to "Start", start_job_path(bot.id), class: "card-footer-item is-primary"
+								= link_to "Edit", bot_path(bot.id), class: "card-footer-item"
+								= link_to "Delete", bot_path(bot.id), method: :delete, class: "card-footer-item"
