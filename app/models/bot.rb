@@ -13,10 +13,13 @@ class Bot < ApplicationRecord
   def frequency_change
     if saved_change_to_frequency?
       job = Sidekiq::Cron::Job.find cron_job_name
-      enabled = job.enabled?
+
+      enabled = job ? job.enabled? : false 
       
-      job.disable!
-      job.destroy
+      if job
+        job.disable!
+        job.destroy
+      end
 
       Sidekiq::Cron::Job.create(
         name: cron_job_name,

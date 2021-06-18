@@ -22,4 +22,4 @@
 								- else
 									= link_to "Start", start_job_path(bot.id), class: "card-footer-item is-primary"
 								= link_to "Edit", bot_path(bot.id), class: "card-footer-item"
-								= link_to "Delete", bot_path(bot.id), method: :delete, class: "card-footer-item"
+								= link_to "Delete", bot_path(bot.id), method: :delete, class: "card-footer-item", confirm: "You'll need to delete the bot from telegram seperately!"
